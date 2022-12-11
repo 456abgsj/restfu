@@ -13,6 +13,7 @@ import java.util.Collection;
 
 @Controller
 public class EmployeeController {
+    //hello
     //对于requestmapping里面的配置是对应的映射当符合对应映射时返回索引值
     //当启动tomcat服务器时默认访问的是tomcat服务器开始设置的初始值http://localhost/restful_war_exploded/
     //当对tomcat服务器进行路径设置时http://localhost/restful_war_exploded/hah/
