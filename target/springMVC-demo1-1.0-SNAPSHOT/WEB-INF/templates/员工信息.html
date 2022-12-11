@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工信息</title>
+</head>
+<body>
+<center>
+<h3>所有员工的信息</h3>
+    <table id="dataTable" >
+        <tr>
+            <th>id&nbsp&nbsp&nbsp&nbsp</th>
+            <th>lastname&nbsp&nbsp&nbsp&nbsp</th>
+            <th>&nbsp&nbspemail</th>
+            <th>gender</th>
+            <th>option</th>
+        </tr>
+        <tr th:each="employee:${employeeList}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.gender}"></td>
+            <td>
+                <a th:href="@{/message/}+${employee.id}">修改</a>
+                <a @click="deleteEmployee" th:href="@{/message/}+${employee.id}">删除</a>
+            </td>
+        </tr>
+    </table>
+    <form id="deleteForm" method="post">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+    <script type="text/javascript">
+        var vue=new Vue()({
+            el:"#dataTable",
+            method:{
+                deleteEmpolyee:function(event){
+                    var deleteForm=document.getElementById("deleteForm");
+                    deleteForm.action = event.target.href;
+                    deleteForm.submit();
+                    event.preventDefault();
+                }
+            }
+        })
+    </script>
+
+</center>
+</body>
+</html>
